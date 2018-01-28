@@ -21,8 +21,8 @@ type HTTPGetter interface {
 // Getter are for implementing HTTPGetter interface
 // and reserved for the future work
 type Getter struct {
-	timeout time.Duration
-	client  *http.Client
+	Timeout time.Duration
+	Client  *http.Client
 }
 
 // New creates a new Getter
@@ -47,12 +47,12 @@ func New(to time.Duration) *Getter {
 		Transport: &tp,
 	}
 
-	return &Getter{client: &c}
+	return &Getter{Client: &c}
 }
 
 // Get fetches url with a timeout
 func (g *Getter) Get(url string) (*http.Response, error) {
-	return g.client.Get(url)
+	return g.Client.Get(url)
 }
 
 // WrapGet gets from `url` and closes the body automatically after running in `do`
